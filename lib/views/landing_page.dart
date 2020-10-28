@@ -17,8 +17,8 @@ class _LandingPageState extends State<LandingPage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton(
-            onPressed: () {
+          InkWell(
+            onTap: () {
               setState(() {
                 _burgerClicked = !_burgerClicked;
               });
@@ -26,9 +26,26 @@ class _LandingPageState extends State<LandingPage> {
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
-            icon: Icon(
-              Icons.menu,
-              color: _burgerClicked == false ? Color(0xffF5F6F8) : Color(0xff121212),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    _burgerClicked == false ? "Menu" : "Close",
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: MediaQuery.of(context).size.height/35,
+                      color: _burgerClicked == false ? Color(0xffF5F6F8) : Color(0xff121212),
+                    )
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width/144),
+                  Icon(
+                    _burgerClicked == false ? Icons.menu : Icons.close,
+                    color: _burgerClicked == false ? Color(0xffF5F6F8) : Color(0xff121212),
+                    size: MediaQuery.of(context).size.height/27.5,
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width/30)
@@ -36,77 +53,68 @@ class _LandingPageState extends State<LandingPage> {
       ),
       body: Stack(
         children: [
-          Expanded(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: _backgroundDecoration()
-            ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: _backgroundDecoration()
           ),
-          Expanded(
-            child: Column(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _text1(0.03125),
+              _text2(0.0625),
+              _text3(0.125),
+              _text4(0.25),
+              _text1(0.375),
+              _text2(0.5),
+              _text3(0.625),
+              _text4(0.75),
+              _text1(0.875),
+              _text2(1.0),
+            ],
+          ),
+          Center(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _text1(0.03125),
-                _text2(0.0625),
-                _text3(0.125),
-                _text4(0.25),
-                _text1(0.375),
-                _text2(0.5),
-                _text3(0.625),
-                _text4(0.75),
-                _text1(0.875),
-                _text2(1.0),
+                _profilePhoto(),
+                SizedBox(width: MediaQuery.of(context).size.width > 1080 ? MediaQuery.of(context).size.width*0.075 : 0),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: _burgerClicked == false ? null : () {},
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      child: _landingMenu(_burgerClicked == false ? "Gregorius" : "About")
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height/56.25),
+                    InkWell(
+                      onTap: _burgerClicked == false ? null : () {},
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      child: _landingMenu(_burgerClicked == false ? "Agung" : "Works")
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height/56.25),
+                    InkWell(
+                      onTap: _burgerClicked == false ? null : () {},
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      child: _landingMenu(_burgerClicked == false ? "Narindra" : "Interests")
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height/56.25),
+                    InkWell(
+                      onTap: _burgerClicked == false ? null : () {},
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      child: _landingMenu(_burgerClicked == false ? "Aditantyo" : "Contact")
+                    ),
+                  ],
+                )
               ],
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    _burgerClicked == false ? "assets/profile_photo_bw.png" : "assets/profile_photo.png",
-                    height: MediaQuery.of(context).size.height,
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width*0.075),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: _landingMenu(_burgerClicked == false ? "Gregorius" : "About")
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height/56.25),
-                      InkWell(
-                        onTap: () {},
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: _landingMenu(_burgerClicked == false ? "Agung" : "Works")
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height/56.25),
-                      InkWell(
-                        onTap: () {},
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: _landingMenu(_burgerClicked == false ? "Narindra" : "Interests")
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height/56.25),
-                      InkWell(
-                        onTap: () {},
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: _landingMenu(_burgerClicked == false ? "Aditantyo" : "Contact")
-                      ),
-                    ],
-                  )
-                ],
-              ),
             ),
           ),
         ],
@@ -154,7 +162,7 @@ class _LandingPageState extends State<LandingPage> {
       child: Text(
         "Flutter (Dart), iOS (Swift), REST API",
         textAlign: TextAlign.center,
-        style: _textStyle(opacity, 6.25),
+        style: _textStyle(opacity, MediaQuery.of(context).size.width/204.8),
       ),
     );
   }
@@ -164,7 +172,7 @@ class _LandingPageState extends State<LandingPage> {
       child: Text(
         "Mobile Application Development",
         textAlign: TextAlign.center,
-        style: _textStyle(opacity, 10.0),
+        style: _textStyle(opacity, MediaQuery.of(context).size.width/128),
       ),
     );
   }
@@ -174,7 +182,7 @@ class _LandingPageState extends State<LandingPage> {
       child: Text(
         "HTML, CSS (Bootstrap), JS (React JS)",
         textAlign: TextAlign.center,
-        style: _textStyle(opacity, 6.25),
+        style: _textStyle(opacity, MediaQuery.of(context).size.width/204.8),
       ),
     );
   }
@@ -184,9 +192,25 @@ class _LandingPageState extends State<LandingPage> {
       child: Text(
         "Front-end Website Development",
         textAlign: TextAlign.center,
-        style: _textStyle(opacity, 10.0)
+        style: _textStyle(opacity, MediaQuery.of(context).size.width/128)
       ),
     );
+  }
+
+  Widget _profilePhoto() {
+    if(MediaQuery.of(context).size.width <= 1080) {
+      return SizedBox(width: 0);
+    } else if(_burgerClicked == false) {
+      return Image.asset(
+        "assets/profile_photo_bw.png",
+        height: MediaQuery.of(context).size.height,
+      );
+    } else {
+      return Image.asset(
+        "assets/profile_photo.png",
+        height: MediaQuery.of(context).size.height,
+      );
+    }
   }
 
   _textStyle(double opacity, double spacing) {
