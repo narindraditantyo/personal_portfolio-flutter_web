@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/views/landing_page.dart';
+import 'package:narindraditantyo/views/landing_page.dart';
 
 void main() {
   runApp(MyApp());
